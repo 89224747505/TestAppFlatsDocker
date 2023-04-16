@@ -1,0 +1,26 @@
+version: "3"
+services:
+  server:
+    build: ./server
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    container_name: server_api
+    restart: always
+  client:
+    build: ./client
+    ports:
+      - "3000:80"
+    container_name: client-app
+    restart: always
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    container_name: db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: flats_data
+      POSTGRES_PASSWORD: BAST8495
+    restart: always
